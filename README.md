@@ -70,7 +70,7 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 
 ### 使用OWASP的AntiSamy库进行处理
 
-使用OWASP的AntiSamy库进行处理需要依赖策略文件，可以使用自带的策略文件也可以自定义策略文件，AntiSamy自带的策略文件有如下：
+使用OWASP的AntiSamy库进行处理，可以将危险的内容清理掉，需要依赖策略文件，可以使用自带的策略文件也可以自定义策略文件，AntiSamy自带的策略文件有如下：
 
 - `antisamy-anythinggoes.xml`：允许HTML、CSS、JavaScript通过，非常危险
 - `antisamy-ebay.xml`：适用于电商网站，允许用户输入HTML脚本作为页面的一部分，相对安全
@@ -80,13 +80,23 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 
 ### 使用OWASP的ESAPI库进行处理
 
-使用OWASP的ESAPI库进行处理需要依赖配置文件，可以从https://github.com/ESAPI/esapi-java-legacy下载配置文件：
+使用OWASP的ESAPI库进行处理，可以将标签进行编码，需要依赖配置文件，可以从https://github.com/ESAPI/esapi-java-legacy下载配置文件：
 
 - `ESAPI.properties`
 - `validation.properties`
 - `esapi-java-logging.properties`
 
 另外还可以使用OWASP Java HTML Sanitizer进行过滤，这两者都需要配置过滤策略。
+
+### 使用jsoup库进行处理
+
+使用jsoup库进行处理，可以将危险的内容清除掉，可以使用内置的白名单，也可以自定义白名单。内置的白名单如下：
+
+- none：只保留标签内文本内容
+- simpleText：简单的文本标签，包含：`b,em,i,strong,u`
+- basic：基本的标签，包含：`a,b,blockquote,br,cite,code,dd,dl,dt,em,i,li,ol,p,pre,q,small,span,strike,strong,sub,sup,u,ul`
+- basicWithImages：基本标签加上img标签，包含：基本标签和`img,src,align,alt,height,width,title`
+- relaxed：在basicWithImages基础上又增加了部分标签，包含：`a,b,blockquote,br,caption,cite,code,col,colgroup,dd,div,dl,dt,em,h1,h2,h3,h4,h5,h6,i,img,li,ol,p,pre,q,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,u,ul`
 
 # cros
 

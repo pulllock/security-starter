@@ -6,3 +6,6 @@ security:
         policy-file: antisamy-ebay.xml
       esapi:
         enable: false
+      jsoup:
+        enable: false
+        whitelist: relaxed
