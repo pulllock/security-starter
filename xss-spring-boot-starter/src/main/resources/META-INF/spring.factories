@@ -1,1 +1,3 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=me.cxis.starter.xss.XssAntiSamyAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  me.cxis.starter.xss.XssAntiSamyAutoConfiguration, \
+  me.cxis.starter.xss.XssEsapiAutoConfiguration

@@ -78,6 +78,16 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 - `antisamy-slashdot.xml`：适用于新闻网站的评论过滤
 - `antisamy-tinymce.xml`：只允许文本格式，相对安全
 
+### 使用OWASP的ESAPI库进行处理
+
+使用OWASP的ESAPI库进行处理需要依赖配置文件，可以从https://github.com/ESAPI/esapi-java-legacy下载配置文件：
+
+- `ESAPI.properties`
+- `validation.properties`
+- `esapi-java-logging.properties`
+
+另外还可以使用OWASP Java HTML Sanitizer进行过滤，这两者都需要配置过滤策略。
+
 # cros
 
 # crlf

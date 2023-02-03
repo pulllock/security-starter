@@ -2,5 +2,7 @@ security:
   starter:
     xss:
       antisamy:
-        enable: true
+        enable: false
         policy-file: antisamy-ebay.xml
+      esapi:
+        enable: false
