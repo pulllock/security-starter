@@ -1,0 +1,5 @@
+security:
+  starter:
+    xss:
+      antisamy-enable: true
+      antisamy-policyFile: antisamy-ebay.xml

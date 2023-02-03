@@ -17,11 +17,14 @@
         <module>sql-spring-boot-starter</module>
         <module>cros-spring-boot-starter</module>
         <module>crlf-spring-boot-starter</module>
+        <module>security-starter-sample</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
         <spring-boot.version>2.7.8</spring-boot.version>
+        <antisamy.version>1.7.2</antisamy.version>
+        <commons-text.version>1.10.0</commons-text.version>
     </properties>
 
     <dependencyManagement>
@@ -32,6 +35,24 @@
                 <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>me.cxis</groupId>
+                <artifactId>xss-spring-boot-starter</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.owasp.antisamy</groupId>
+                <artifactId>antisamy</artifactId>
+                <version>${antisamy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-text</artifactId>
+                <version>${commons-text.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
