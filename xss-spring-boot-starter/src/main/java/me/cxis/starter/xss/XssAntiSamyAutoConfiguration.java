@@ -11,22 +11,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 
 @Configuration
-@EnableConfigurationProperties(XssProperties.class)
-public class XssAutoConfiguration {
+@EnableConfigurationProperties(XssAntiSamyProperties.class)
+public class XssAntiSamyAutoConfiguration {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(XssAutoConfiguration.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(XssAntiSamyAutoConfiguration.class);
 
-    private XssProperties xssProperties;
+    private XssAntiSamyProperties xssAntiSamyProperties;
 
-    public XssAutoConfiguration(XssProperties xssProperties) {
-        this.xssProperties = xssProperties;
+    public XssAntiSamyAutoConfiguration(XssAntiSamyProperties xssAntiSamyProperties) {
+        this.xssAntiSamyProperties = xssAntiSamyProperties;
     }
 
     @Bean
-    @ConditionalOnProperty(prefix = "security.starter.xss", value = {"antisamy-enable"}, havingValue = "true")
+    @ConditionalOnProperty(prefix = "security.starter.xss.antisamy", value = {"enable"}, havingValue = "true")
     @AutoConfigureOrder(Ordered.HIGHEST_PRECEDENCE)
     public AntiSamyFilter antiSamyFilter() {
         LOGGER.info("antisamy filter enabled");
-        return new AntiSamyFilter(xssProperties.getAntisamyPolicyFile());
+        return new AntiSamyFilter(xssAntiSamyProperties.getPolicyFile());
     }
 }
