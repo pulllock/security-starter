@@ -1,7 +1,5 @@
 package me.cxis.starter.xss.support;
 
-import org.owasp.validator.html.Policy;
-import org.owasp.validator.html.PolicyException;
 import org.springframework.util.StreamUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.WebUtils;
@@ -14,7 +12,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
@@ -26,10 +23,9 @@ public class AntiSamyHttpServletRequestWrapper extends HttpServletRequestWrapper
 
     private final AntiSamyProcessor antiSamyProcessor;
 
-    public AntiSamyHttpServletRequestWrapper(HttpServletRequest request, String policyFile) throws IOException {
+    public AntiSamyHttpServletRequestWrapper(HttpServletRequest request, AntiSamyProcessor antiSamyProcessor) throws IOException {
         super(request);
-        // 初始化AntiSamyProcessor
-        this.antiSamyProcessor = new AntiSamyProcessor(policyFile);
+        this.antiSamyProcessor = antiSamyProcessor;
 
         // 获取原始请求体的内容
         byte[] originContent = StreamUtils.copyToByteArray(request.getInputStream());

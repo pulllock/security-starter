@@ -23,10 +23,9 @@ public class JsoupHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     private final JsoupProcessor jsoupProcessor;
 
-    public JsoupHttpServletRequestWrapper(HttpServletRequest request, String whitelist) throws IOException {
+    public JsoupHttpServletRequestWrapper(HttpServletRequest request, JsoupProcessor jsoupProcessor) throws IOException {
         super(request);
-        // 初始化JsoupProcessor
-        this.jsoupProcessor = new JsoupProcessor(whitelist);
+        this.jsoupProcessor = jsoupProcessor;
 
         // 获取原始请求体的内容
         byte[] originContent = StreamUtils.copyToByteArray(request.getInputStream());

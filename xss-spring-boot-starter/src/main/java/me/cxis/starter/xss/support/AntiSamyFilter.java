@@ -10,14 +10,15 @@ import java.io.IOException;
 
 public class AntiSamyFilter extends OncePerRequestFilter {
 
-    private String policyFile;
+    private final AntiSamyProcessor antiSamyProcessor;
 
     public AntiSamyFilter(String policyFile) {
-        this.policyFile = policyFile;
+        // 初始化AntiSamyProcessor
+        this.antiSamyProcessor = new AntiSamyProcessor(policyFile);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        filterChain.doFilter(new AntiSamyHttpServletRequestWrapper(request, policyFile), response);
+        filterChain.doFilter(new AntiSamyHttpServletRequestWrapper(request, antiSamyProcessor), response);
     }
 }

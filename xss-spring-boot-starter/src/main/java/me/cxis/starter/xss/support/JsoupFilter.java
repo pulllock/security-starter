@@ -10,14 +10,16 @@ import java.io.IOException;
 
 public class JsoupFilter extends OncePerRequestFilter {
 
-    private String whitelist;
+
+    private final JsoupProcessor jsoupProcessor;
 
     public JsoupFilter(String whitelist) {
-        this.whitelist = whitelist;
+        // 初始化JsoupProcessor
+        this.jsoupProcessor = new JsoupProcessor(whitelist);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        filterChain.doFilter(new JsoupHttpServletRequestWrapper(request, whitelist), response);
+        filterChain.doFilter(new JsoupHttpServletRequestWrapper(request, jsoupProcessor), response);
     }
 }

@@ -21,12 +21,11 @@ public class HtmlSanitizerHttpServletRequestWrapper extends HttpServletRequestWr
 
     private final byte[] cachedContent;
 
-    private HtmlSanitizerProcessor htmlSanitizerProcessor = null;
+    private HtmlSanitizerProcessor htmlSanitizerProcessor;
 
-    public HtmlSanitizerHttpServletRequestWrapper(HttpServletRequest request, String allowElements) throws IOException {
+    public HtmlSanitizerHttpServletRequestWrapper(HttpServletRequest request, HtmlSanitizerProcessor htmlSanitizerProcessor) throws IOException {
         super(request);
-        // 初始化HtmlSanitizerProcessor
-        this.htmlSanitizerProcessor = new HtmlSanitizerProcessor(allowElements);
+        this.htmlSanitizerProcessor = htmlSanitizerProcessor;
 
         // 获取原始请求体的内容
         byte[] originContent = StreamUtils.copyToByteArray(request.getInputStream());

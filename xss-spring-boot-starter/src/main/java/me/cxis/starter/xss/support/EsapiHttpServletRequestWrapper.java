@@ -23,10 +23,9 @@ public class EsapiHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     private final EsapiProcessor esapiProcessor;
 
-    public EsapiHttpServletRequestWrapper(HttpServletRequest request) throws IOException {
+    public EsapiHttpServletRequestWrapper(HttpServletRequest request, EsapiProcessor esapiProcessor) throws IOException {
         super(request);
-        // 初始化EsapiProcessor
-        this.esapiProcessor = new EsapiProcessor();
+        this.esapiProcessor = esapiProcessor;
 
         // 获取原始请求体的内容
         byte[] originContent = StreamUtils.copyToByteArray(request.getInputStream());
@@ -35,7 +34,7 @@ public class EsapiHttpServletRequestWrapper extends HttpServletRequestWrapper {
             String contentType = request.getContentType();
             // 文件上传的流不处理
             if (contentType != null && !contentType.equals(MULTIPART_FORM_DATA_VALUE)) {
-                cachedContent = esapiProcessor.encodeForHtml(new String(originContent, UTF_8)).getBytes(UTF_8);
+                cachedContent = this.esapiProcessor.encodeForHtml(new String(originContent, UTF_8)).getBytes(UTF_8);
             } else {
                 cachedContent = originContent;
             }

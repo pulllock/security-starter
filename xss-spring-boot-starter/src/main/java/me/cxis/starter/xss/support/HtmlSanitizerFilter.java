@@ -10,14 +10,15 @@ import java.io.IOException;
 
 public class HtmlSanitizerFilter extends OncePerRequestFilter {
 
-    private String allowElements;
+    private HtmlSanitizerProcessor htmlSanitizerProcessor = null;
 
     public HtmlSanitizerFilter(String allowElements) {
-        this.allowElements = allowElements;
+        // 初始化HtmlSanitizerProcessor
+        this.htmlSanitizerProcessor = new HtmlSanitizerProcessor(allowElements);
     }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        filterChain.doFilter(new HtmlSanitizerHttpServletRequestWrapper(request, allowElements), response);
+        filterChain.doFilter(new HtmlSanitizerHttpServletRequestWrapper(request, htmlSanitizerProcessor), response);
     }
 }

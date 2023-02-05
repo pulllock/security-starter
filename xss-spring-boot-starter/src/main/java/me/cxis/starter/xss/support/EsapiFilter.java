@@ -10,8 +10,15 @@ import java.io.IOException;
 
 public class EsapiFilter extends OncePerRequestFilter {
 
+    private final EsapiProcessor esapiProcessor;
+
+    public EsapiFilter() {
+        // 初始化EsapiProcessor
+        this.esapiProcessor = new EsapiProcessor();
+    }
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        filterChain.doFilter(new EsapiHttpServletRequestWrapper(request), response);
+        filterChain.doFilter(new EsapiHttpServletRequestWrapper(request, esapiProcessor), response);
     }
 }
