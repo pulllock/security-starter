@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration packages="org.owasp.security.logging.filter">
+    <appenders>
+        <console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %enc{%m}{CRLF} %n"/>
+        </console>
+        <!-- 转义日志中的回车换行 -->
+        <console name="SecureConsole" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss,SSS} %5p %c{1}:%L - %enc{%m}{CRLF} %n"/>
+            <Filters>
+                <SecurityMarkerFilter />
+            </Filters>
+        </console>
+        <Rewrite name="MaskingRewritePolicy">
+            <MaskingRewritePolicy />
+            <AppenderRef ref="CONSOLE"/>
+            <AppenderRef ref="SecureConsole"/>
+        </Rewrite>
+    </appenders>
+
+    <loggers>
+        <root level="info">
+            <appender-ref ref="MaskingRewritePolicy"/>
+        </root>
+    </loggers>
+
+</configuration>
