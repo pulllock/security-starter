@@ -32,11 +32,11 @@ public class HtmlSanitizerProcessor {
     }
 
     private void initPolicy(String allowElements) {
-        HtmlPolicyBuilder policyBuilder = new HtmlPolicyBuilder().allowElements(allowElements.split(","));
-        /*if (StringUtils.isNotEmpty(allowElements)) {
+        HtmlPolicyBuilder policyBuilder = new HtmlPolicyBuilder();
+        if (StringUtils.isNotEmpty(allowElements)) {
             String[] allowedETags = allowElements.split(",");
             policyBuilder.allowElements(allowedETags);
-        }*/
+        }
 
         policy = policyBuilder.toFactory();
     }
