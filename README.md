@@ -66,6 +66,7 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 - 自定义过滤器，配置需要过滤的字符名单
 - 使用OWASP的AntiSamy库进行处理
 - 使用OWASP的ESAPI库进行处理
+- 使用OWASP Java HTML Sanitizer库进行处理
 - 使用jsoup库进行处理
 
 ### 使用OWASP的AntiSamy库进行处理
@@ -86,7 +87,9 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 - `validation.properties`
 - `esapi-java-logging.properties`
 
-另外还可以使用OWASP Java HTML Sanitizer进行过滤，这两者都需要配置过滤策略。
+## 使用OWASP Java HTML Sanitizer库进行处理
+
+使用OWASP Java HTML Sanitizer库进行处理，不需要依赖配置文件，可以自定义白名单，也可以使用内置白名单。
 
 ### 使用jsoup库进行处理
 

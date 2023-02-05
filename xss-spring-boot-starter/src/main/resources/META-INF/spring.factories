@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   me.cxis.starter.xss.XssAntiSamyAutoConfiguration, \
   me.cxis.starter.xss.XssEsapiAutoConfiguration, \
-  me.cxis.starter.xss.XssJsoupAutoConfiguration
+  me.cxis.starter.xss.XssJsoupAutoConfiguration, \
+  me.cxis.starter.xss.XssHtmlSanitizerAutoConfiguration

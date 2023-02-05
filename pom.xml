@@ -31,6 +31,7 @@
         <antisamy.version>1.7.2</antisamy.version>
         <commons-text.version>1.10.0</commons-text.version>
         <esapi.version>2.5.1.0</esapi.version>
+        <owasp-java-html-sanitizer.version>20220608.1</owasp-java-html-sanitizer.version>
         <jsoup.version>1.15.3</jsoup.version>
     </properties>
 
@@ -66,6 +67,12 @@
                 <groupId>org.owasp.esapi</groupId>
                 <artifactId>esapi</artifactId>
                 <version>${esapi.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+                <artifactId>owasp-java-html-sanitizer</artifactId>
+                <version>${owasp-java-html-sanitizer.version}</version>
             </dependency>
 
             <dependency>

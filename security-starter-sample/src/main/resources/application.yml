@@ -9,3 +9,6 @@ security:
       jsoup:
         enable: false
         whitelist: relaxed
+      html-sanitizer:
+        enable: false
+        allow-elements: h1, div
