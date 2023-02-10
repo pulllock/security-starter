@@ -197,3 +197,6 @@ crlf全称Carriage-Return Line-Feed（回车换行），crlf注入攻击可以�
 - 日志中如果打印堆栈信息也有日志注入风险，需要统一处理下
 
 # sql
+
+- 可以使用过滤器过滤掉一些sql关键字和特殊字符，正则：`select|update|and|or|delete|insert|truncate|char|into|substr|ascii|declare|exec|count|master|into|drop|execute|table|char|declare|sitename|xp_cmdshell|like|from|grant|use|group_concat|column_name|information_schema.columns|table_schema|union|where|order|by|'\\*|\\;|\\-|\\--|\\+|\\,|\\//|\\/|\\%|\\#`
+- 使用mybatis的时候要使用`#{}`，不要使用`${}`，必须要用`${}`的地方要使用白名单或者不要有用户输入
