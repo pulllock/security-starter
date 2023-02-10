@@ -1,11 +1,11 @@
 # 说明
 
-包含了一些常用的安全相关的starter，比如防止XSS、CROS、SQL注入、CRLF注入等等。使用的时候可以将本项目作为POM导入，并选择合适的start进行引入使用。该项目使用[https://github.com/dachengxi/parent-pom](https://github.com/dachengxi/parent-pom)作为父模块，可以根据实际需要选择保留或者去除，使用前请先将parent-pom发布到仓库中。
+包含了一些常用的安全相关的starter，比如防止XSS、CORS、SQL注入、CRLF注入等等。使用的时候可以将本项目作为POM导入，并选择合适的start进行引入使用。该项目使用[https://github.com/dachengxi/parent-pom](https://github.com/dachengxi/parent-pom)作为父模块，可以根据实际需要选择保留或者去除，使用前请先将parent-pom发布到仓库中。
 
 # starter列表
 
 - `xss-spring-boot-starter`：防止xss攻击
-- `cros-spring-boot-starter`：防止cros攻击
+- `cors-spring-boot-starter`：防止cors攻击
 - `crlf-spring-boot-starter`：防止crlf攻击
 - `sql-spring-boot-starter`：防止sql注入攻击
 
@@ -29,7 +29,7 @@
 
 ## xss-spring-boot-starter使用方法
 
-## cros-spring-boot-starter使用方法
+## cors-spring-boot-starter使用方法
 
 ## crlf-spring-boot-starter使用方法
 
@@ -101,7 +101,86 @@ XSS全称Cross-site scripting（跨站脚本），是代码注入的一种，允
 - basicWithImages：基本标签加上img标签，包含：基本标签和`img,src,align,alt,height,width,title`
 - relaxed：在basicWithImages基础上又增加了部分标签，包含：`a,b,blockquote,br,caption,cite,code,col,colgroup,dd,div,dl,dt,em,h1,h2,h3,h4,h5,h6,i,img,li,ol,p,pre,q,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,u,ul`
 
-# cros
+# cors
+
+CORS全称Cross-origin resource sharing（跨域资源共享），默认情况下浏览器会限制从脚本中发起的跨域HTTP请求，默认的安全限制为同源策略，也就是只能访问同域下的内容，而CORS可以让不同域的应用能够无视同源策略。
+
+CORS漏洞通常是由于Access-Control-Allow-Origin配置不当引起的，没有必要的话尽量不开启CORS，如果需要开启则需要使用白名单，不要使用*，另外要尽量避免使用Access-Control-Allow-Credentials
+
+## 配置CORS
+
+- 使用全局配置方式
+- 基于过滤器的方式
+- 使用`@CrossOrigin`注解的方式
+
+### 使用全局配置方式
+
+配置方式1：
+
+```
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                // 尽量不要使用*
+                .allowedOrigins("*")
+                .allowedMethods("POST", "GET", "PATCH", "DELETE", "PUT")
+                .allowCredentials(true)
+                .maxAge(3600)
+                .allowedHeaders("*");
+    }
+}
+```
+
+配置方式2：
+
+```
+@Configuration
+public class CorsConfigOther extends WebMvcConfigurerAdapter {
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                // 尽量不要使用*
+                .allowedOrigins("*")
+                .allowedMethods("POST", "GET", "PATCH", "DELETE", "PUT")
+                .allowCredentials(true)
+                .maxAge(3600)
+                .allowedHeaders("*");
+    }
+}
+```
+
+### 基于过滤器方式
+
+```
+public class CorsFilter implements Filter {
+
+
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        HttpServletResponse servletResponse = (HttpServletResponse) response;
+        // 尽量不要使用*
+        servletResponse.setHeader("Access-Control-Allow-Origin","*");
+        servletResponse.setHeader("Access-Control-Allow-Credentials", "true");
+        servletResponse.setHeader("Access-Control-Allow-Methods", "POST, GET, PATCH, DELETE, PUT");
+        servletResponse.setHeader("Access-Control-Max-Age", "3600");
+        servletResponse.setHeader("Access-Control-Allow-Headers", "*");
+        chain.doFilter(request, servletResponse);
+    }
+}
+
+@Configuration
+public class CorsConfig {
+
+    @Bean
+    public CorsFilter corsFilter() {
+        return new CorsFilter();
+    }
+}
+```
 
 # crlf
 

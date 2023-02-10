@@ -1,1 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=me.cxis.starter.cros.CrosAutoConfiguration

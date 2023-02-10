@@ -1,10 +1,10 @@
-package me.cxis.starter.cros;
+package me.cxis.starter.cors;
 
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(CrosProperties.class)
-public class CrosAutoConfiguration {
+@EnableConfigurationProperties(CorsProperties.class)
+public class CorsAutoConfiguration {
 
 }

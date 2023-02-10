@@ -15,7 +15,7 @@
     <modules>
         <module>xss-spring-boot-starter</module>
         <module>sql-spring-boot-starter</module>
-        <module>cros-spring-boot-starter</module>
+        <module>cors-spring-boot-starter</module>
         <module>crlf-spring-boot-starter</module>
         <module>security-starter-sample</module>
         <module>crlf-logback-spring-boot-starter</module>
