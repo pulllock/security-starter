@@ -11,7 +11,7 @@
 
 # starter使用方法和说明
 
-所有的starter使用，首先需要将general-starter-parent进行导入，代码如下：
+所有的starter使用，首先需要将security-starter进行导入，代码如下：
 
 ```
 <dependencyManagement>
