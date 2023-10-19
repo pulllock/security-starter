@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=me.cxis.starter.crlf.log4j.CrlfLog4jAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=fun.pullock.starter.crlf.log4j.CrlfLog4jAutoConfiguration

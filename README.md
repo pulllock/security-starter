@@ -1,6 +1,6 @@
 # 说明
 
-包含了一些常用的安全相关的starter，比如防止XSS、CORS、SQL注入、CRLF注入等等。使用的时候可以将本项目作为POM导入，并选择合适的start进行引入使用。该项目使用[https://github.com/dachengxi/parent-pom](https://github.com/dachengxi/parent-pom)作为父模块，可以根据实际需要选择保留或者去除，使用前请先将parent-pom发布到仓库中。
+包含了一些常用的安全相关的starter，比如防止XSS、CORS、SQL注入、CRLF注入等等。使用的时候可以将本项目作为POM导入，并选择合适的start进行引入使用。该项目使用[https://github.com/pulllock/parent-pom](https://github.com/pulllock/parent-pom)作为父模块，可以根据实际需要选择保留或者去除，使用前请先将parent-pom发布到仓库中。
 
 # starter列表
 
@@ -17,7 +17,7 @@
 <dependencyManagement>
     <dependencies>
         <dependency>
-            <groupId>me.cxis</groupId>
+            <groupId>fun.pullock</groupId>
             <artifactId>security-starter</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
